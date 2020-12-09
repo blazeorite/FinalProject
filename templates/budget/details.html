@@ -1,0 +1,12 @@
+{% extends 'budget/base.html' %}
+
+{% block body %}
+    info : {{ budget.budget_name }}, {{ budget.earned_income }}, {{ budget.housing_expense }}
+    <br>
+    advice:
+    <ul>
+        <li>{{ housing_expense }}</li>
+        <li>{{ income }}</li>
+    </ul>
+    <a  href="{% url 'budget-dashboard' %}">go back</a>
+{% endblock %}

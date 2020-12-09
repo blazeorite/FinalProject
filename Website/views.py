@@ -72,15 +72,32 @@ def budget_dashboard_add(request):
 
 
 @login_required(login_url='../login')
-def budget_dashboard_delete(request):
-    return HttpResponse("Hello, budgetdashboard-delete")
+def budget_dashboard_delete(request, id_):
+    budget = Budget.objects.get(id=id_)
+    if request.method == 'POST':
+        budget.delete()
+        return redirect('budget-dashboard')
+    return render(request, 'budget/delete-confirm.html', context={'budget': budget})
 
 
 @login_required(login_url='../login')
-def budget_dashboard_update(request):
-    return HttpResponse("Hello, budgetdashboard-update")
+def budget_dashboard_update(request, id_):
+    budget = Budget.objects.get(id=id_)
+    form = BudgetForm(request.POST or None, instance=budget)
+    if form.is_valid():
+        form.save()
+        return redirect('budget-dashboard')
+    return render(request, 'budget/update.html', {'form': form, 'budget': budget})
 
 
 def logout_view(request):
     logout(request)
     return redirect('index')
+
+
+def budget_dashboard_details(request, id_):
+    budget = Budget.objects.get(id=id_)
+    context = {'budget': budget, 'housing_expense': 'test', 'income': 'test income'+str(budget.earned_income)}
+    if budget.housing_expense > 10:
+        context.update({"income" : 'test 2 updated: '+str(budget.earned_income)})
+    return render(request, 'budget/details.html', context)

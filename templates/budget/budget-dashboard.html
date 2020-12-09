@@ -3,11 +3,19 @@
 {% block body %}
     <ul>
         {% for budget in budgets %}
-            <li>User: {{ budget.created_by }}, budget name: {{ budget.budget_name }}, earned income: {{ budget.earned_income }} </li>
+            <li>User: {{ budget.created_by }},
+                budget name: {{ budget.budget_name }},
+                earned income: {{ budget.earned_income }},
+                <a href="{% url 'budget-dashboard-update' budget.id %}">update</a>,
+                <a href="{% url 'budget-dashboard-delete' budget.id %}">delete</a>
+                <a href="{% url 'budget-dashboard-details' budget.id %}">details</a>
+            </li>
         {% endfor %}
     </ul>
 
     <a href="{% url 'budget-dashboard-add' %}">Add budget</a>
     <a href="{% url 'logout_view' %}">logout</a>
+
+
 {% endblock %}
 

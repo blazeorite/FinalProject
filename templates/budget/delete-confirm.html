@@ -1,0 +1,10 @@
+{% extends 'budget/base.html' %}
+
+{% block body %}
+
+    <form action="{% url 'budget-dashboard-delete' budget.id %}" method="POST">
+        {% csrf_token %}
+        <a  href="{% url 'budget-dashboard' %}">No, go back</a>
+        <button type="submit">Yes, delete</button>
+    </form>
+{% endblock %}
