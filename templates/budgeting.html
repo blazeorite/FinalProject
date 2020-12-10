@@ -1,0 +1,102 @@
+{% extends 'budget/base.html' %}
+{% load static %}
+
+{% block title %}
+    <title>Learn About Investments that Drive Wealth | Cache Tips</title>
+{% endblock %}
+
+{% block body %}
+    <div class="hero-budgeting">
+        <h2 class="display-1 text-center text-dark">Budgeting</h2>
+    </div>
+
+    <div class="container-fluid py-5 bg-info">
+        <div class="row my-3">
+            <h2 class="display-6 text-center text-white pb-3">The Three Main Steps to Budgeting</h2>
+            <div class="card-group">
+                <div class="card border-white bg-dark">
+                    <img src="{% static 'images/budgeting/designer.png' %}" class="card-img-top my-3"
+                         style="width: 200px;height: 300px;" alt="...">
+                    <div class="card-body bg-light">
+                        <h6 class="card-title display-6 text-dark text-center pb-3">Determine Income</h6>
+                        <p class="card-text text-dark p-3">Start with how much money you make after tax each month.
+                            If your compensation varies, using an average will be okay, but the more accurate the
+                            better.
+                            </br></br>Don’t forget other income sources like alimony, child support, interest, dividends
+                            and rental income.
+                            Now that you know your income, you can review where it is going.</p>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-light">Last updated 3 mins ago</small>
+                    </div>
+                </div>
+                <div class="card border-white bg-dark">
+                    <img src="{% static 'images/budgeting/receipt.png' %}" class="card-img-top my-3"
+                         style="width: 200px;height: 300px;" alt="...">
+                    <div class="card-body bg-light">
+                        <h6 class="card-title display-6 text-dark text-center pb-3">Compute Expenses</h6>
+                        <p class="card-text text-dark p-3">Let’s break up your monthly spend into specific buckets.
+                            For many people this will be grouped into housing, transportation, utilities and food
+                            (exclude restaurants here).
+                            </br></br>After those, you can use additional buckets like “Dining out”, “Vacation”,
+                            “Clothes”, etcetera.
+                            Remember, some expenses may not bill monthly so review prior months to get a holistic
+                            picture of your monthly spend.</p>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-light">Last updated 3 mins ago</small>
+                    </div>
+                </div>
+                <div class="card border-white bg-dark">
+                    <img src="{% static 'images/budgeting/calculator.png' %}" class="card-img-top my-3"
+                         style="width: 200px;height: 300px;" alt="...">
+                    <div class="card-body bg-light">
+                        <h6 class="card-title display-6 text-dark text-center pb-3">Calculate Difference</h6>
+                        <p class="card-text text-dark p-3">If your expenses are already greater than your savings, you
+                            have 2 options.
+                            Either make more money, or spend less. Generally it’s easier to reduce spending versus
+                            making more money.
+                            </br></br>Look back at your budget and determine what can be reduced. Dining out less? Fewer
+                            new clothes?
+                            If you’re saving more than you’re spending, that’s great.
+                            Are you happy with the amount you’re saving?
+                            If not, what else can be eliminated?</p>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-light">Last updated 3 mins ago</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row my-5 bg-light">
+            <div class="col-8 p-5">
+                <div class="p-5 mt-5 mx-5">
+                    <h2 class="display-6 mb-5">Have You Created a Budget Yet?</h2>
+                    <p class="fs-4">Try our easy-to-use budget creator tool built from the ground up!</p>
+                    <p class="fs-4">Get recommendations based on your overall financial profile.</p>
+
+                    <a href="{% url 'budget-dashboard' %}">
+                    <button type="button" style="background-color: #0ea9e1;border: none;"
+                            class="btn btn-primary btn-lg mt-5">Launch Tool&nbsp;
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-box-arrow-up-right"
+                             fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                  d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
+                            <path fill-rule="evenodd"
+                                  d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/>
+                        </svg>
+                    </button> </a>
+                </div>
+            </div>
+            <div class="col-4">
+                <img src="{% static 'images/budgeting/woman-thinking.png' %}" class="img-fluid" alt="...">
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+{% endblock %}

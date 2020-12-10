@@ -1,20 +1,41 @@
 {% extends 'budget/base.html' %}
 
 {% block body %}
-    <ul>
-        {% for budget in budgets %}
-            <li>User: {{ budget.created_by }},
-                budget name: {{ budget.budget_name }},
-                earned income: {{ budget.earned_income }},
-                <a href="{% url 'budget-dashboard-update' budget.id %}">update</a>,
-                <a href="{% url 'budget-dashboard-delete' budget.id %}">delete</a>
-                <a href="{% url 'budget-dashboard-details' budget.id %}">details</a>
-            </li>
-        {% endfor %}
-    </ul>
+    <div class="container mt-5">
+        <h3>Here are your budgets, {{ current_user | title }}</h3>
+        <br>
+        <h5>
+            Budgets
+            <a href="{% url 'budget-dashboard-add' %}">
+                <span class="fas fa-plus-circle"></span>
+            </a>
+        </h5>
+        <div class="p-3 border border-light bg-light rounded-lg w-75">
+            {% for budget in budgets %}
+                <div class="row rounded-lg shadow-sm bg-white p-2 ml-2 mt-2 mr-2 mb-3">
+                    <div class="col-md-6">
+                        <a id="title-card" href="{% url 'budget-dashboard-details' budget.id %}">{{ budget.budget_name }}</a>
+                        <br>
+                        <span class="created-at">created at: {{ budget.created_at }}</span>
+                    </div>
+                    <div class="col-md-6 text-right">
+                        <a href="{% url 'budget-dashboard-update' budget.id %}">
+                            <span class="fas fa-edit"></span>
+                        </a>
+                        <a href="{% url 'budget-dashboard-delete' budget.id %}">
+                            <span class="fas fa-trash-alt"></span>
+                        </a>
+                        <a href="{% url 'budget-dashboard-details' budget.id %}">
+                            <span class="fas fa-info-circle"></span>
+                        </a>
+                    </div>
+                </div>
 
-    <a href="{% url 'budget-dashboard-add' %}">Add budget</a>
-    <a href="{% url 'logout_view' %}">logout</a>
+            {% endfor %}
+
+        </div>
+    </div>
+
 
 
 {% endblock %}

@@ -1,0 +1,70 @@
+{% extends 'budget/base.html' %}
+{% load static %}
+{% block body %}
+
+    <div class="jumbotron hero">
+        <h2 class="display-1 text-center text-light">Investment</h2>
+    </div>
+
+    <div class="container-fluid py-5 bg-dark">
+        <div class="row">
+            <div class="card-group">
+                <div class="card">
+                    <img src="{% static 'images/investment/bank.png' %}" class="card-img-top my-3" alt="...">
+                    <div class="card-body bg-light">
+                        <h6 class="card-title display-6 text-dark text-center">Bonds</h6>
+                        <p class="card-text text-dark">Bonds are a type of financial instrument that take form as claiming rights to a certain percentage
+                  of a loan made out by governments and corporations.</p>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-light">Last updated 3 mins ago</small>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="{% static 'images/investment/corporation.png' %}" class="card-img-top my-3" alt="...">
+                    <div class="card-body bg-light">
+                        <h6 class="card-title display-6 text-dark text-center">Stocks</h6>
+                        <p class="card-text text-dark">Stocks (or shares) or pieces of ownership in a company and is one of the two main classes of assets
+                  investors use in what is called a "portfolio".</p>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-light">Last updated 3 mins ago</small>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="{% static 'images/investment/money-currency.png' %}" class="card-img-top my-3" alt="...">
+                    <div class="card-body bg-light">
+                        <h6 class="card-title display-6 text-dark text-center">Forex</h6>
+                        <p class="card-text text-dark">Foreign Exchange (Forex) is the marketplace where currencies and currency derivatives are traded. The Forex market is the
+              heaviest traded and most liquid market in the world by trading volume with over $5 trillion in trades happening per day.</p>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-light">Last updated 3 mins ago</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container m-5">
+        <h3>What stock should you buy in 2020? Here is our recommendation. </h3>
+
+        <span id="stock-name"></span>
+        <span id="stock-price"></span>
+        <img id="stock-image" src="" alt="stock ticker">
+        <br><br>
+        <div id="stock-description"></div>
+        <br>
+        <h6>Check the price of another stock:</h6>
+        <label for="ticker">Ticker</label>
+        <input class=" w-50 form-control" type="text" placeholder="Enter ticker" id="ticker">
+        <div>
+            <button onclick="callTicker()" class="btn btn-success">Get price</button>
+        </div>
+        <span id="ticker-result">
+        </span>
+        <img id="ticker-result-logo" src="{% static 'images/download.png' %}" alt="logo">
+    </div>
+
+
+{% endblock %}

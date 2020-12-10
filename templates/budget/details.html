@@ -1,12 +1,74 @@
 {% extends 'budget/base.html' %}
 
 {% block body %}
-    info : {{ budget.budget_name }}, {{ budget.earned_income }}, {{ budget.housing_expense }}
-    <br>
-    advice:
-    <ul>
-        <li>{{ housing_expense }}</li>
-        <li>{{ income }}</li>
-    </ul>
-    <a  href="{% url 'budget-dashboard' %}">go back</a>
+    <div onload="myFunction()" class="container m-5">
+        <h3>Budget Breakdown: <span class="title">{{ budget.budget_name }}</span></h3>
+        <br>
+        <table class="table table-sm table-striped w-75">
+          <thead>
+            <tr>
+                <th scope="col">Monthly Expenses</th>
+                <th scope="col">Average Benchmark</th>
+                <th scope="col">Your Expenses</th>
+                <th scope="col">Difference</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+                <td>Housing</td>
+                <td>${{ expenses_avg.housing }}</td>
+                <td>${{ budget.housing_expense }}</td>
+                <td>$<span class="difference">{{ difference.housing }}</span></td>
+
+            </tr>
+            <tr>
+              <td>Food</td>
+              <td>${{ expenses_avg.food }}</td>
+              <td>${{ budget.housing_expense }}</td>
+              <td>$<span class="difference">{{ difference.food }}</span></td>
+
+            </tr>
+            <tr>
+              <td>Medical</td>
+              <td>${{ expenses_avg.medical }}</td>
+              <td>${{ budget.medical_expense }}</td>
+              <td>$<span class="difference">{{ difference.medical }}</span></td>
+            </tr>
+            <tr>
+                <td>Child care</td>
+                <td>${{ expenses_avg.childcare }}</td>
+                <td>${{ budget.child_care_expense }}</td>
+
+                <td>$<span class="difference">{{ difference.childcare }}</span></td>
+            </tr>
+            <tr>
+              <td>Taxes</td>
+              <td>${{ expenses_avg.taxes }}</td>
+              <td>${{ budget.taxes }}</td>
+               <td>$<span class="difference">{{ difference.taxes }}</span></td>
+            </tr>
+            <tr class="table-secondary">
+              <td>Total Expenses</td>
+              <td>${{ expenses_avg.total }}</td>
+              <td>${{ total }}</td>
+              <td >$ <span class="difference">{{ difference.total }}</span></td>
+            </tr>
+
+          </tbody>
+        </table>
+
+
+        <div class="mt-5">
+            <h4>Review: </h4>
+            {{ income_comment }}
+            <br>
+            Check out the our <a href="{% url 'investment' %}">investment</a>
+            page for a stock recommendation and investing advice, and budgeting page for more
+            <a href="{% url 'budgeting' %}">budgeting</a>  tips.
+        </div>
+        <br>
+        <a href="{% url 'budget-dashboard' %}" class="btn btn-info">&lt;- Go back</a>
+
+    </div>
+
 {% endblock %}

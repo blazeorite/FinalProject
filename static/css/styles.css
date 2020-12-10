@@ -1,0 +1,171 @@
+.created-at {
+    font-size: 0.7rem;
+    color: gray;
+}
+
+#title-card {
+    color: black;
+}
+
+.title {
+    color: darkgoldenrod;
+    font-style: italic;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    color: black;
+}
+
+h1 {
+    width: 50%;
+}
+
+.display-6 {
+    font-weight: 600;
+}
+
+
+.list-group {
+    width: 10%;
+}
+
+
+li {
+    display: inline;
+    margin-left: 2rem;
+}
+
+.card {
+    background-color: #0ea9e1;
+    height: 100%;
+}
+
+/*.card-img, .card-img-bottom, .card-img-top {*/
+/*    height: 70%;*/
+/*}*/
+
+.showcase {
+    background: linear-gradient(90deg, #0ea9e1, #0ea9e1) 50%/100% 3px no-repeat;
+}
+
+.img-thumbnail {
+    width: 200px;
+    height: 75px;
+    object-fit: contain;
+    border: none;
+}
+
+.card-img-top {
+    /*width: 300px;*/
+    /*height: 200px;*/
+    object-fit: contain;
+    border: none;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+a {
+    text-decoration: none;
+    color: #0ea9e1;
+
+}
+
+a:hover {
+    text-decoration: underline;
+    color: #0ea9e1;
+}
+
+.btn:hover {
+    background-color: #5f6b73;
+    text-decoration: none;
+}
+
+a .img-thumbnail:hover {
+    opacity: 0.5;
+}
+
+.logo {
+    width: 3rem;
+    height: 3rem;
+}
+
+.jumbotron {
+    background-image: url("/static/images/hero.jpg");
+    /*padding: 100px 200px 200px 200px;*/
+    /*-webkit-background-size: cover;*/
+    /*-moz-background-size: cover;*/
+    /*-o-background-size: cover;*/
+    /*background-position: center;*/
+    /*height:100%;*/
+    background-size: cover;
+    background-position: center;
+    height: auto;
+    width: auto;
+
+}
+
+.jumbotron.hero {
+    background-image: url("/static/images/hero-invest.jpg");
+    /*padding: 100px 200px 200px 200px;*/
+    /*-webkit-background-size: cover;*/
+    /*-moz-background-size: cover;*/
+    /*-o-background-size: cover;*/
+    /*background-position: center;*/
+    /*height:100%;*/
+    background-size: cover;
+    background-position: center;
+    height: auto;
+    width: auto;
+    margin-bottom: 0 !important;
+    border-radius: 0 !important;
+
+}
+
+.hero-investment {
+    background-image: url("/static/images/hero-invest.jpg");
+    padding: 100px 200px 200px 200px;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-position: center;
+    height: 100%;
+
+}
+
+.carousel-indicators li {
+    background-color: #000;
+
+}
+
+.card {
+    margin: auto;
+}
+
+.logo-text {
+    color: #0ea9e1;
+}
+
+.navbar {
+    background-color: green;
+}
+
+.card-img-top {
+    object-fit: contain;
+    border: none;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.card {
+    background-color: #0ea9e1;
+    height: 100%;
+}
+
+.card.delete{
+    background-color: #f3f3f3;
+}
+
+#ticker-result-logo {
+    height: 20px;
+}

@@ -2,9 +2,22 @@
 
 {% block body %}
 
-    <form action="{% url 'budget-dashboard-delete' budget.id %}" method="POST">
-        {% csrf_token %}
-        <a  href="{% url 'budget-dashboard' %}">No, go back</a>
-        <button type="submit">Yes, delete</button>
-    </form>
+    <div class="container m-5 w-75">
+        <form action="{% url 'budget-dashboard-delete' budget.id %}" method="POST">
+            {% csrf_token %}
+            <div class="card delete">
+                <div class="card-header">
+                    Delete budget
+                </div>
+              <div class="card-body">
+                <h5 >Are you sure you want to delete the budget <span class="title">{{ budget.budget_name }}</span>?</h5>
+                <div>
+                    <a class="btn btn-info" href="{% url 'budget-dashboard' %}">No, go back</a>
+                    <button type="submit" class="btn btn-danger">Yes, delete</button>
+                </div>
+
+              </div>
+            </div>
+        </form>
+    </div>
 {% endblock %}

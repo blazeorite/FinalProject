@@ -5,23 +5,26 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, get_user_model
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
-from .models import Budget
-from.forms import BudgetForm
+from .models import Budget, EmailSignup
+from .forms import BudgetForm, EmailForm
 from django.contrib.auth import logout
-
 
 
 # Create your views here.
 def index(request):
-    return HttpResponse("Hello, Index")
+    form = EmailForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        return redirect('index')
+    return render(request, 'budget/index.html', {'form': form})
 
 
 def budgeting(request):
-    return HttpResponse("Hello, budgeting")
+    return render(request, 'budgeting.html')
 
 
 def investment(request):
-    return HttpResponse("Hello, investment")
+    return render(request, 'investment.html')
 
 
 def login_view(request):
@@ -42,10 +45,10 @@ def login_view(request):
 def register(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
-    # check whether it's valid: for example it verifies that password1 and password2 match
+        # check whether it's valid: for example it verifies that password1 and password2 match
         if form.is_valid():
             form.save()
-    # redirect the user to login page so that after registration the user can enter the credentials
+        # redirect the user to login page so that after registration the user can enter the credentials
         return redirect('budget-dashboard')
     else:
         # Create an empty instance of Django's UserCreationForm to generate the necessary html on the template.
@@ -56,8 +59,8 @@ def register(request):
 @login_required(login_url='../login')
 def budget_dashboard(request):
     current_user = request.user
-    budgets = Budget.objects.filter(created_by=current_user.id)
-    return render(request, 'budget/budget-dashboard.html', context={'budgets': budgets})
+    budgets = Budget.objects.filter(created_by=current_user.id).order_by('-created_at')
+    return render(request, 'budget/budget-dashboard.html', context={'budgets': budgets, 'current_user': current_user})
 
 
 @login_required(login_url='../login')
@@ -97,7 +100,37 @@ def logout_view(request):
 
 def budget_dashboard_details(request, id_):
     budget = Budget.objects.get(id=id_)
-    context = {'budget': budget, 'housing_expense': 'test', 'income': 'test income'+str(budget.earned_income)}
-    if budget.housing_expense > 10:
-        context.update({"income" : 'test 2 updated: '+str(budget.earned_income)})
+    # store the benchmark numbers
+    expenses_avg = {'housing': 1689, 'food': 657, 'childcare': 500, 'medical': 357, 'taxes': 1374, 'total': 4100}
+
+    # calculate the total expenses of the budget.
+    total_expenses = budget.housing_expense + budget.food_expense + budget.child_care_expense + budget.medical_expense + budget.taxes
+
+    # calculator the difference between benchmark - budget expenses.
+    difference = {'housing': 1689 - budget.housing_expense, 'food': 657 - budget.food_expense,
+                  'childcare': 500 - budget.child_care_expense, 'medical': 357 - budget.medical_expense,
+                  'taxes': 1374 - budget.taxes, 'total': 4100 - total_expenses}
+
+    # calculate how much is left over. income-expenses.
+    leftover = budget.earned_income - total_expenses
+
+    # pass the budget, the benchmark numbers, the differnce, the total expeneses
+    # and also the comments.
+
+    context = {'budget': budget, 'expenses_avg': expenses_avg, 'difference': difference,
+               'total': total_expenses,
+               'housing_expense_comment': 'You are good',
+               'income_comment': 'Good job, your income $' +
+                                 str(budget.earned_income) +
+                                 ' is able to cover your expenses for each month. And you will have ' +
+                                 str(leftover) + ' left over'}
+
+    if leftover < 0:
+        context.update({'income_comment': 'Sorry, Look likes your income $' +
+                                          str(budget.earned_income) +
+                                          ' is not able to cover your expenses for each month. And you will be in $' +
+                                          str(abs(leftover)) + ' of debt'})
+
+    # if budget.housing_expense > 10:
+    #     context.update({"income": 'test 2 updated: '+str(budget.earned_income)})
     return render(request, 'budget/details.html', context)

@@ -1,11 +1,38 @@
 {% extends 'budget/base.html' %}
 
 {% block body %}
-    <h1>hi</h1>
-    <form action="{% url 'register' %}" method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Register">
-    </form>
+    <div class="container">
+        <h3>Register:</h3>
+        <form action="{% url 'register' %}" method="post">
+            {% csrf_token %}
+            <div class="form-group w-25">
+                <label for="id_username">Username:</label>
+                <input class="form-control form-control-sm" type="text" name="username" maxlength="150"
+                       autocapitalize="none" autocomplete="username"
+                       autofocus required id="id_username">
+            </div>
+            <div class="form-group w-25">
+                <label for="id_password1">Password:</label>
+                <input class="form-control form-control-sm" type="password" name="password1" autocomplete="new-password"
+                       required id="id_password1">
+            </div>
+
+            <div class="form-group w-25">
+                <label for="id_password2">Password confirmation:</label>
+                <input class="form-control form-control-sm" type="password" name="password2" autocomplete="new-password"
+                       required id="id_password2">
+            </div>
+            <ul>
+                <li>Your password can’t be too similar to your other personal information.</li>
+                <br>
+                <li>Your password must contain at least 8 characters.</li>
+                <br>
+                <li>Your password can’t be a commonly used password.</li>
+                <br>
+                <li>Your password can’t be entirely numeric.</li>
+            </ul>
+            <button class="btn btn-primary" type="submit" >Register</button>
+        </form>
+    </div>
 {% endblock %}
 

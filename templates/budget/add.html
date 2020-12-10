@@ -1,10 +1,55 @@
 {% extends 'budget/base.html' %}
 
 {% block body %}
-    <h1>Product form</h1>
-    <form action="{% url 'budget-dashboard-add' %}" method="POST">
-        {% csrf_token %}
-        {{ form.as_p}}
-        <input type="submit" value="Save">
-    </form>
+
+    <div class="container m-5">
+        <h1>Budget your expenses!</h1>
+        <div class="bg-light p-4 w-75">
+            <form action="{% url 'budget-dashboard-add' %}" method="POST">
+                {% csrf_token %}
+                <div>
+                    <label for="id_budget_name">Budget name:</label>
+                    <input  class="form-control" type="text" name="budget_name" maxlength="100" required id="id_budget_name">
+                </div>
+                <div>
+                    <label for="id_earned_income">Earned income:</label>
+                    <input class="form-control" type="number" name="earned_income" step="0.01" required id="id_earned_income">
+                </div>
+                <div>
+                    <label for="id_housing_expense">Housing expense:</label>
+                    <input  class="form-control" type="number" name="housing_expense" step="0.01" required id="id_housing_expense">
+                </div>
+                <div>
+                    <label for="id_food_expense">Food expense:</label>
+                    <input class="form-control" type="number" name="food_expense"  step="0.01" required id="id_food_expense">
+                </div>
+                <div>
+                    <label for="id_medical_expense">Medical expense:</label>
+                    <input class="form-control" type="number" name="medical_expense"  step="0.01" required id="id_medical_expense">
+                </div>
+                <div>
+                    <label for="id_child_care_expense">Child care expense:</label>
+                    <input class="form-control" type="number" name="child_care_expense" step="0.01" required id="id_child_care_expense">
+                </div>
+                <div>
+                    <label for="id_taxes">Taxes:</label>
+                    <input class="form-control" type="number" name="taxes" step="0.01" required id="id_taxes">
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col">
+                        <button class="btn btn-primary" type="submit" >Add</button>
+                    </div>
+                    <div class="col text-right">
+                        <a class="btn btn-warning" href="{% url 'budget-dashboard' %}">Dashboard</a>
+                    </div>
+                </div>
+
+
+
+            </form>
+        </div>
+
+    </div>
+
 {% endblock %}
