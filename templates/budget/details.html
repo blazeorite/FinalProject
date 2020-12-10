@@ -1,5 +1,7 @@
 {% extends 'budget/base.html' %}
-
+{% block title %}
+    <title>Details | Cache Tips</title>
+{% endblock %}
 {% block body %}
     <div onload="myFunction()" class="container m-5">
         <h3>Budget Breakdown: <span class="title">{{ budget.budget_name }}</span></h3>

@@ -35,8 +35,8 @@ def login_view(request):
             user = form.get_user()
             login(request, user)
             return redirect('budget-dashboard')
-        # else:
-        #     render(request, 'budget/login.html', context={'form': form, 'isValid': False})
+        else:
+            return redirect('login_view')
     else:
         form = AuthenticationForm()
         return render(request, 'budget/login.html', context={'form': form, 'isValid': True})
@@ -96,6 +96,7 @@ def budget_dashboard_update(request, id_):
 def logout_view(request):
     logout(request)
     return redirect('index')
+
 
 @login_required(login_url='../login')
 def budget_dashboard_details(request, id_):
