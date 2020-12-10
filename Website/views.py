@@ -98,6 +98,7 @@ def logout_view(request):
     return redirect('index')
 
 
+@login_required(login_url='../login')
 def budget_dashboard_details(request, id_):
     budget = Budget.objects.get(id=id_)
     # store the benchmark numbers
